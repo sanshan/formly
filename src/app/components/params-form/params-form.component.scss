@@ -1,0 +1,10 @@
+.params-form {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  max-width: 300px;
+
+  button.submit {
+    margin-top: 20px;
+  }
+}

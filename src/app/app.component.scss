@@ -1,0 +1,44 @@
+:host ::ng-deep json-editor,
+:host ::ng-deep json-editor .jsoneditor,
+:host ::ng-deep json-editor > div,
+:host ::ng-deep json-editor jsoneditor-outer {
+  height: 700px;
+}
+
+.content {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+
+  .sidenav-container {
+    height: 100%;
+
+    .page-content {
+      display: flex;
+      flex-direction: row;
+      justify-content: left;
+      width: 70%;
+
+      .card-wrapper {
+        width: 100%;
+
+        .json-writer {
+          width: 100%;
+        }
+      }
+
+      .chart-wrapper {
+        width: 100%;
+        height: 100%;
+      }
+
+    }
+
+
+  }
+}

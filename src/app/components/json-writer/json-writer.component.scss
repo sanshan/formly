@@ -1,0 +1,17 @@
+.example-card {
+  min-width: 200px;
+
+  .card-textarea {
+    width: 100%;
+
+    textarea {
+      height: 100%;
+    }
+  }
+
+  .example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  }
+
+}
