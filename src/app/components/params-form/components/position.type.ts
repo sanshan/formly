@@ -1,10 +1,9 @@
-import {Component} from "@angular/core";
-import {FieldType} from '@ngx-formly/core';
+import {Component} from '@angular/core';
+import {FieldType} from '@ngx-formly/material/form-field';
 
 @Component({
-  selector: 'formly-list-type',
+  selector: 'formly-position-type',
   template: `
-    <mat-label *ngIf="to.label">{{ to.label | translate }}</mat-label>
     <mat-select [formControl]="formControl" [formlyAttributes]="field"
                 (selectionChange)="to.change && to.change(field, formControl)">
       <ng-container *ngFor="let item of to.options">
@@ -14,5 +13,5 @@ import {FieldType} from '@ngx-formly/core';
   `,
 })
 
-export class ListTypeComponent extends FieldType {
+export class PositionTypeComponent extends FieldType {
 }

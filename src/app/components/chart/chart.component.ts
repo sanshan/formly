@@ -25,9 +25,14 @@ export class ChartComponent implements OnChanges, AfterViewInit, OnDestroy {
   }
 
   ngOnChanges(): void {
+    console.log('ngOnChanges: ', this.config);
+
     if (this.chart) {
-      this.chart.config = cloneDeep(this.config);
+      this.chart.dispose();
+      // this.chart.config = cloneDeep(this.config);
+      this.chart = am4core.createFromConfig(cloneDeep(this.config), "chartdiv", am4charts.PieChart) as am4charts.PieChart;
     }
+
   }
 
   ngAfterViewInit() {

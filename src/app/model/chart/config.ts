@@ -5,50 +5,6 @@ export const CHART_CONFIG: Config = {
     "title": "Настройки чарта",
     "type": "object",
     "properties": {
-      // "startAngle": {
-      //   "title": "Начальный угол",
-      //   "type": "number"
-      // },
-      // "endAngle": {
-      //   "title": "Конечный угол",
-      //   "type": "number"
-      // },
-      // "innerRadius": {
-      //   "title": "Внутренний радиус",
-      //   "enum": [
-      //     "10%",
-      //     "20%",
-      //     "30%",
-      //     "40%"
-      //   ]
-      // },
-      // "radius": {
-      //   "title": "Радиус",
-      //   "enum": [
-      //     "90%",
-      //     "80%",
-      //     "70%",
-      //     "60%"
-      //   ]
-      // },
-      // "background": {
-      //   "type": "object",
-      //   "properties": {
-      //     "fill": {
-      //       "type": "string",
-      //       "title": "Цвет фона",
-      //     }
-      //   }
-      // },
-      // "numberFormatter": {
-      //   "type": "object",
-      //   "properties": {
-      //     "numberFormat": {
-      //       "type": "string",
-      //       "title": "Формат чисел",
-      //     }
-      //   }
-      // },
       "legend": {
         "title": "Управление легендой",
         "type": "object",
@@ -74,15 +30,51 @@ export const CHART_CONFIG: Config = {
                     "const": false
                   },
                   "position": {
-                    "title": "Положение",
-                    "type": 'enum',
-                    "enum": [
-                      'top', 'bottom'
-                    ]
+                    "type": "position",
+                    "title": "Положение"
+                  },
+                  "contentAlign": {
+                    "type": "h-align",
+                    "title": "Выравнивание(гор.)"
+                  },
+                  "valign": {
+                    "type": "v-align",
+                    "title": "Выравнивание(вер.)"
                   }
                 }
               }
             ]
+          }
+        }
+      },
+      "numberFormatter": {
+        "title": "Формат чисел",
+        "type": "object",
+        "properties": {
+          "numberFormat": {
+            "type": "numberFormat",
+            "title": "После запятой",
+          }
+        },
+      },
+      titles: {
+        "title": "Заголовки чарта",
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "text": {
+              "type": 'string',
+              "title": "Текст"
+            },
+            "marginBottom": {
+              "type": 'string',
+              "title": "Отступ снизу"
+            },
+            "align": {
+              "type": "h-align",
+              "title": "Выравнивание(гор.)"
+            }
           }
         }
       }
@@ -99,39 +91,49 @@ export const CHART_CONFIG: Config = {
     }],
 
     // Add data
-    "data": [{
-      "country": "Lithuania",
-      "litres": 501.9
-    }, {
-      "country": "Czech Republic",
-      "litres": 301.9
-    }, {
-      "country": "Ireland",
-      "litres": 201.1
-    }, {
-      "country": "Germany",
-      "litres": 165.8
-    }, {
-      "country": "Australia",
-      "litres": 139.9
-    }, {
-      "country": "Austria",
-      "litres": 128.3
-    }, {
-      "country": "UK",
-      "litres": 99
-    }, {
-      "country": "Belgium",
-      "litres": 60
-    }, {
-      "country": "The Netherlands",
-      "litres": 50
-    }],
+    "data": [
+      {
+        "country": "Lithuania",
+        "litres": 501.9
+      }, {
+        "country": "Czech Republic",
+        "litres": 301.9
+      }, {
+        "country": "Ireland",
+        "litres": 201.1
+      }, {
+        "country": "Germany",
+        "litres": 165.8
+      }, {
+        "country": "Australia",
+        "litres": 139.9
+      }, {
+        "country": "Austria",
+        "litres": 128.3
+      }, {
+        "country": "UK",
+        "litres": 99
+      }, {
+        "country": "Belgium",
+        "litres": 60
+      }, {
+        "country": "The Netherlands",
+        "litres": 50
+      }
+    ],
 
-    // And, for a good measure, let's add a legend
     "legend": {
-      disabled: true
+      disabled: false,
+      position: 'bottom',
+      contentAlign: 'center',
+      valign: 'middle'
     },
+
+    "titles": [
+      {
+        text: 'Заголовок чарта',
+      }
+    ],
 
     numberFormatter: {
       numberFormat: '#.'

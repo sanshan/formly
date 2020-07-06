@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {FieldType} from '@ngx-formly/core';
 
 @Component({
-  selector: 'formly-object-type',
+  selector: 'formly-group-type',
   template: `
     <div class="mb-3">
       <legend *ngIf="to.label">{{ to.label }}</legend>
@@ -15,8 +15,5 @@ import {FieldType} from '@ngx-formly/core';
     </div>
   `,
 })
-export class ObjectTypeComponent extends FieldType {
-  defaultOptions = {
-    defaultValue: {},
-  };
+export class GroupTypeComponent extends FieldType {
 }

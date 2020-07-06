@@ -18,6 +18,13 @@
   .sidenav-container {
     height: 100%;
 
+    .sidenav{
+
+      .chart-params {
+        //max-width: 300px;
+      }
+    }
+
     .page-content {
       display: flex;
       flex-direction: row;

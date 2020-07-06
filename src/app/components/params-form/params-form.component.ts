@@ -26,11 +26,12 @@ export class ParamsFormComponent implements OnChanges {
   model: Model;
 
 
-  constructor(private formlyJSONschema: FormlyJsonschema,) {
+  constructor(private formlyJSONschema: FormlyJsonschema) {
   }
 
   ngOnChanges(): void {
     this.fields = [this.formlyJSONschema.toFieldConfig(this.config.schema)];
+    console.log('ParamsFormComponent: ', this.fields);
     this.model = this.config.model;
   }
 

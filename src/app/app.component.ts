@@ -3,7 +3,7 @@ import {Config, Model} from './model/interfaces';
 import {FormlyFieldConfig} from "@ngx-formly/core";
 import {CHART_CONFIG} from "./model/chart/config";
 import * as cloneDeep from 'lodash.clonedeep';
-import { TranslateService } from '@ngx-translate/core';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -19,11 +19,8 @@ export class AppComponent implements OnInit {
   constructor(public translate: TranslateService) {
     translate.addLangs(['en', 'ru']);
     translate.setDefaultLang('ru');
-
     const browserLang = translate.getBrowserLang();
 
-
-    console.log(browserLang);
     translate.use(browserLang.match(/en|ru/) ? browserLang : 'ru');
   }
 
@@ -34,16 +31,10 @@ export class AppComponent implements OnInit {
   }
 
   onReceiveSchema(json: FormlyFieldConfig[]): void {
-    console.log('onReceiveSchema: ', this.config);
-    console.log('onReceiveSchema: ', json);
-
     this.config = {...this.config, schema: {...json}}
-    console.log('onReceiveSchema: ', this.config);
   }
 
   onModelChange(model: Model): void {
-    console.log('onModelChange: ', model);
-
     this.config = {...this.config, model: cloneDeep(model)}
   }
 
