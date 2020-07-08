@@ -1,85 +1,176 @@
 import {Config} from "../interfaces";
+import {Legend} from "@amcharts/amcharts4/charts";
 
 export const CHART_CONFIG: Config = {
-  schema: {
-    "title": "Настройки чарта",
-    "type": "object",
-    "properties": {
-      "legend": {
-        "title": "Управление легендой",
-        "type": "object",
-        "properties": {
-          "disabled": {
-            "type": "boolean",
-            "title": "Выключить легенду",
+  tabs: [
+    {
+      label: 'Общие параметры',
+      icon: 'cogs',
+      description: 'Общие параметры',
+      fields: [
+        {
+          key: 'innerRadius',
+          type: 'slider',
+          templateOptions: {
+            label: 'Внутренний радиус',
+            description: 'Действует только на круговые диаграммы',
+            min: 0,
+            max: 100
           }
         },
-        "dependencies": {
-          "disabled": {
-            "oneOf": [
+        {
+          key: 'legend',
+          wrappers: ['mat-expansion-panel'],
+          templateOptions: {
+            label: 'Легенда',
+            description: 'параметры',
+            attributes: {
+              icon: 'camera-control',
+              faq: 'Общие параметры для легенды'
+            }
+          },
+          fieldGroup: [
+            {
+              key: 'disabled',
+              type: 'boolean',
+              templateOptions: {
+                label: 'Выключить легенду'
+              }
+            },
+            {
+              key: 'position',
+              type: 'position',
+              templateOptions: {
+                label: 'Положение'
+              },
+              hideExpression: (legend: Legend) => {
+                return legend.disabled;
+              }
+            },
+            {
+              key: 'contentAlign',
+              type: 'h-align',
+              templateOptions: {
+                label: 'Выравнивание(гор.)'
+              },
+              hideExpression: (legend: Legend) => {
+                return legend.disabled;
+              }
+            },
+            {
+              key: 'valign',
+              type: 'v-align',
+              templateOptions: {
+                label: 'Выравнивание(вер.)'
+              },
+              hideExpression: (legend: Legend) => {
+                return legend.disabled;
+              }
+            }
+          ]
+        },
+        {
+          key: 'numberFormatter',
+          wrappers: ['mat-expansion-panel'],
+          templateOptions: {
+            label: 'Формат чисел',
+            description: 'параметры',
+            attributes: {
+              icon: 'decimal-comma-increase',
+              faq: 'Параметры фарматирования чисел'
+            }
+          },
+          fieldGroup: [
+            {
+              key: 'numberFormat',
+              type: 'numberFormat',
+              templateOptions: {
+                label: 'После запятой'
+              }
+            }
+          ]
+        },
+        {
+          key: 'titles',
+          wrappers: ['mat-expansion-panel'],
+          type: 'array',
+          templateOptions: {
+            label: 'Заголовки',
+            description: 'параметры',
+            attributes: {
+              icon: 'format-title',
+              faq: 'Параметры заголовка'
+            }
+          },
+          fieldArray: {
+            fieldGroup: [
               {
-                "properties": {
-                  "disabled": {
-                    "const": true
-                  }
+                key: 'text',
+                type: 'string',
+                templateOptions: {
+                  label: 'Текст заголовка'
                 }
               },
               {
-                "properties": {
-                  "disabled": {
-                    "const": false
-                  },
-                  "position": {
-                    "type": "position",
-                    "title": "Положение"
-                  },
-                  "contentAlign": {
-                    "type": "h-align",
-                    "title": "Выравнивание(гор.)"
-                  },
-                  "valign": {
-                    "type": "v-align",
-                    "title": "Выравнивание(вер.)"
-                  }
+                key: 'marginBottom',
+                type: 'string',
+                templateOptions: {
+                  label: 'Нижний отступ'
+                }
+              },
+              {
+                key: 'marginTop',
+                type: 'string',
+                templateOptions: {
+                  label: 'Верхний отступ'
+                }
+              },
+              {
+                key: 'align',
+                type: 'h-align',
+                templateOptions: {
+                  label: 'Выравнивание'
+                }
+              }
+            ]
+          }
+        },
+
+      ]
+    },
+    {
+      label: 'Серии',
+      icon: 'chart-arc',
+      description: 'Управление сериями',
+      fields: [
+        {
+          key: 'series',
+          wrappers: ['mat-expansion-panel'],
+          type: 'array',
+          templateOptions: {
+            label: 'Серии',
+            description: 'параметры',
+            attributes: {
+              icon: 'chart-arc'
+            }
+          },
+          fieldArray: {
+            fieldGroup: [
+              {
+                key: 'startAngle',
+                type: 'slider',
+                templateOptions: {
+                  label: 'Угол',
+                  min: 0,
+                  max: 360
                 }
               }
             ]
           }
         }
-      },
-      "numberFormatter": {
-        "title": "Формат чисел",
-        "type": "object",
-        "properties": {
-          "numberFormat": {
-            "type": "numberFormat",
-            "title": "После запятой",
-          }
-        },
-      },
-      titles: {
-        "title": "Заголовки чарта",
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "text": {
-              "type": 'string',
-              "title": "Текст"
-            },
-            "marginBottom": {
-              "type": 'string',
-              "title": "Отступ снизу"
-            },
-            "align": {
-              "type": "h-align",
-              "title": "Выравнивание(гор.)"
-            }
-          }
-        }
-      }
+      ]
     }
-  },
+  ],
   model: {
     // Create pie series
     "series": [{
@@ -89,7 +180,6 @@ export const CHART_CONFIG: Config = {
         "category": "country"
       }
     }],
-
     // Add data
     "data": [
       {
@@ -137,11 +227,9 @@ export const CHART_CONFIG: Config = {
 
     numberFormatter: {
       numberFormat: '#.'
-    }
+    },
+
+    innerRadius: 20
 
   }
 }
-
-
-
-

@@ -35,8 +35,8 @@
         <div class="card-wrapper">
           <app-json-writer
             class="json-writer"
-            [schema]="defaultSchema"
-            (change)="onReceiveSchema($event)"
+            [data]="defaultTabs"
+            (change)="onReceiveData($event)"
           ></app-json-writer>
         </div>
 

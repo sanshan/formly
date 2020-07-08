@@ -31,6 +31,10 @@ import {GroupTypeComponent} from "./components/params-form/components/group.type
 import {MatListModule} from "@angular/material/list";
 import {FlexModule} from "@angular/flex-layout";
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatExpansionModule} from "@angular/material/expansion";
+import {PanelWrapperComponent} from './components/params-form/wrappers/panel-wrapper/panel-wrapper.component';
+import {FormlySliderTypeComponent} from "./components/params-form/components/slider.type";
+import {MatSliderModule} from "@angular/material/slider";
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient, 'assets/i18n/', '.json');
@@ -45,7 +49,9 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     ObjectTypeComponent,
     ArrayTypeComponent,
     PositionTypeComponent,
-    GroupTypeComponent
+    GroupTypeComponent,
+    PanelWrapperComponent,
+    FormlySliderTypeComponent
   ],
   imports: [
     BrowserModule,
@@ -54,6 +60,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     ReactiveFormsModule,
     MatSidenavModule,
     MatListModule,
+    MatExpansionModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -61,29 +68,22 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
         deps: [HttpClient],
       },
     }),
+    FormlyMaterialModule,
     FormlyModule.forRoot({
       types: [
+        {name: 'string', extends: 'input'},
+        {name: 'boolean', extends: 'checkbox'},
         {
           name: 'number',
           extends: 'input',
           defaultOptions: {
             templateOptions: {
-              type: 'number',
-            },
-          },
-        },
-        {name: 'string', extends: 'input'},
-        {name: 'object', component: ObjectTypeComponent},
-        {
-          name: 'group',
-          extends: 'object',
-          component: GroupTypeComponent
+              type: 'number'
+            }
+          }
         },
         {name: 'array', component: ArrayTypeComponent},
-        {name: 'boolean', extends: 'checkbox'},
-        {
-          name: 'enum', extends: 'select'
-        },
+        {name: 'slider', component: FormlySliderTypeComponent},
         {
           name: 'position',
           extends: 'select',
@@ -138,9 +138,11 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
             }
           }
         },
+      ],
+      wrappers: [
+        {name: 'mat-expansion-panel', component: PanelWrapperComponent}
       ]
     }),
-    FormlyMaterialModule,
     MatSidenavModule,
     MatButtonModule,
     MatTooltipModule,
@@ -153,7 +155,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     NgJsonEditorModule,
     MatSelectModule,
     FlexModule,
-    MatTabsModule
+    MatTabsModule,
+    MatSliderModule
   ],
   providers: [
     {provide: FORMLY_CONFIG, multi: true, useFactory: registerTranslateExtension, deps: [TranslateService]},

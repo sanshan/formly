@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component, EventEmitter, Output, ViewChild, Input} from '@angular/core';
 import {FormlyFieldConfig} from "@ngx-formly/core";
 import {JsonEditorComponent, JsonEditorOptions} from 'ang-jsoneditor';
-import {Schema} from "../../model/interfaces";
+import {TabType} from "../../model/interfaces";
 
 @Component({
   selector: 'app-json-writer',
@@ -12,7 +12,7 @@ import {Schema} from "../../model/interfaces";
         <mat-card-title>JSON for Form</mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        <json-editor [options]="editorOptions" [data]="schema" (jsonChange)="getData($event)"></json-editor>
+        <json-editor [options]="editorOptions" [data]="data" (jsonChange)="getData($event)"></json-editor>
       </mat-card-content>
       <mat-card-actions>
         <button (click)="onGenerate()" mat-button>GENERATE</button>
@@ -23,8 +23,8 @@ import {Schema} from "../../model/interfaces";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class JsonWriterComponent {
-  @Input() schema: Schema;
-  @Output() change: EventEmitter<FormlyFieldConfig[]> = new EventEmitter<FormlyFieldConfig[]>();
+  @Input() data: TabType[];
+  @Output() change: EventEmitter<TabType[]> = new EventEmitter<TabType[]>();
   @ViewChild(JsonEditorComponent, {static: false}) editor: JsonEditorComponent;
 
   response: any;
@@ -38,7 +38,6 @@ export class JsonWriterComponent {
   }
 
   getData(event) {
-    console.log('getData: ', event);
     if (!(event instanceof Event)) {
       this.response = event
     }

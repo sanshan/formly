@@ -1,10 +1,77 @@
 .params-form {
   display: flex;
   flex-direction: column;
-  padding: 10px;
-  //min-width: 300px;
-  max-width: 300px;
+  width: 500px;
+
   button.submit {
     margin-top: 20px;
   }
+
+  button[type='submit'] {
+    text-align: right;
+  }
 }
+
+:host {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+:host ::ng-deep .mat-tab-labels {
+  flex-direction: column;
+}
+
+mat-tab-group {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: row;
+}
+
+:host ::ng-deep .mat-tab-body-wrapper {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+mat-tab-body {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+:host ::ng-deep mat-ink-bar.vertical {
+  left: 0!important;
+  right: inherit!important;
+  width: 2px!important;
+}
+
+::ng-deep .params-form .mat-tab-header {
+  border-bottom: none;
+}
+
+::ng-deep .params-form .mat-tab-label-container {
+  border-right: 1px solid #eee;
+}
+::ng-deep .params-form.short .mat-tab-label-container {
+  width: 35px;
+}
+::ng-deep .params-form.full .mat-tab-label-container {
+  width: 100%;
+}
+
+//::ng-deep .mat-tab-label-container:hover {
+//  width: 100%;
+//}
+
+::ng-deep .params-form .mat-tab-label {
+  padding: 0 15px 0 5px;
+  justify-content: left;
+}
+
+::ng-deep .params-form .mat-tab-label:nth-of-type(1){
+  color: #000;
+  cursor: pointer;
+}
+
+

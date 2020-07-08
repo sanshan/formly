@@ -5,6 +5,7 @@ import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 
 import * as cloneDeep from 'lodash.clonedeep';
+import {Model} from "../../model/interfaces";
 
 am4core.useTheme(am4themes_animated);
 
@@ -17,7 +18,7 @@ am4core.useTheme(am4themes_animated);
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChartComponent implements OnChanges, AfterViewInit, OnDestroy {
-  @Input() config: any;
+  @Input() config: Model;
 
   chart: am4charts.PieChart;
 
@@ -28,8 +29,8 @@ export class ChartComponent implements OnChanges, AfterViewInit, OnDestroy {
     console.log('ngOnChanges: ', this.config);
 
     if (this.chart) {
-      this.chart.dispose();
       // this.chart.config = cloneDeep(this.config);
+      this.chart.dispose();
       this.chart = am4core.createFromConfig(cloneDeep(this.config), "chartdiv", am4charts.PieChart) as am4charts.PieChart;
     }
 
